@@ -1,0 +1,54 @@
+\section{Darstellung der GUI}\label{sec:Auswertung}
+\textbf{Noch nicht vollständig!!!}
+
+%\noindent nach dem Starten der GUI, erhält der Anwender eine Oberfläche, in dem er eine Auswahl über die Ausführung Option treffen kann. Folgende Auswahl steht zur Verfügung: tiefe Kniebeuge, halbe Kniebeuge, vierte Kniebeuge und spezielle Kniebeuge. Bei den ersten drei Optionen werden entsprechende Schwellenwerte gesetzt. Bei der letzten Option kann der Anwender selbst entscheiden, welche Schwellenwerte gesetzt werden sollen. Außerdem kann hier eine Probanden ID welche eine spätere Zuordnung der Daten ermöglicht, eingegeben werden. 
+%\noindent Nach Auswahl der Ausführungsoption erscheint ein Informationstext für den Anwender, der ihn darüber informiert, welche Kniegelenkswinkel für die gewählte Option erwartet werden und welchen Nutzen diese in Hinsicht der Muskelaktivität hat. nachdem der Infotext gelesen ist, wird mit einem Button ok bestätigt. Nun gelangt man zu der Auswertungsoberfläche.
+%\begin{lstlisting}[style=Matlab-editor]
+%function KnieAngleGUI
+% KnieAngleGUI – GUI zur Analyse des Kniegelenkswinkels aus CSV-Daten
+
+% Erstes GUI-Fenster zur Auswahl der Kniebeugen-Tiefe
+%hFigSelect = figure('Name','Kniebeugen-Typ wählen','NumberTitle','off',...
+%    'Position',[300 300 400 200],'WindowStyle','modal');
+
+%uicontrol('Style','text','String','Bitte wählen Sie die Kniebeugen-Art:',...
+%    'Position',[50 130 300 30],'FontSize',10);
+
+%hPopupSelect = uicontrol('Style','popupmenu','String',{'Tiefe Kniebeuge','Halbe Kniebeuge','Viertel Kniebeuge','Dynamische Kniebeuge','Spezielle Kniebeuge'},...
+%    'Position',[100 90 200 30]);
+
+%hButtonOK = uicontrol('Style','pushbutton','String','OK',...
+%    'Position',[150 40 100 30],'Callback',@startMainGUI);
+
+%uiwait(hFigSelect);
+
+%\end{lstlisting}
+%\noindent Zunächst müssen alle Elemente für die Oberfläche erstellt werden, die erscheinen sollen. Ein zentrales Element ist ein Button zum Laden der CSV-Dateien. Mit dem MATLAB-Befehl \texttt{uicontrol()} kann ein solches GUI-Element erzeugt werden. Anschließend wird definiert, dass es sich um einen Button handelt, auf dem der Text „CSV-Datei laden“ angezeigt wird. Die Position und Größe des Buttons werden mithilfe von vier Parametern festgelegt.
+
+%\noindent Zusätzlich wird eine Callback-Funktion hinterlegt. Diese sorgt dafür, dass beim Drücken des Buttons die entsprechende Funktion zum Laden der CSV-Datei aufgerufen wird. Das gleiche Vorgehen wird auch für die anderen GUI-Elemente angewendet.
+
+%\noindent Für den Schieberegler wird darüber hinaus die Einstellung der Schwellenwerte implementiert, dabei wird die Callback-Funktion "sliderCallback" hinterlegt. Zur Darstellung des Plots wird ein Diagramm erstellt, und für die Ausgabe der Kniebeugenzählung kommt ein Textfeld zum Einsatz.
+\\
+%Im folgenden werden die verschiedenen Callback Funktionen beschrieben
+%\subsubsection{Callback Funktion: CSV-Dateien laden}
+%\noindent Die Callback-Funktion „CSV-Dateien laden“ ermöglicht das Einlesen der zuvor mithilfe der Phyphox-App aufgenommenen CSV-Dateien sowie die Berechnung der Kniegelenkswinkel aus diesen Daten. Beim Aufrufen der Funktion öffnet sich ein Dialogfenster, in dem der Benutzer die entsprechenden CSV-Dateien auswählen kann. Zunächst wird die Datei für den Unterschenkel und anschließend die Datei für den Oberschenkel ausgewählt. Falls keine Datei oder zweimal die gleiche Datei ausgewählt wurde, wird die Funktion automatisch beendet.
+
+%\noindent Mit der Funktion \texttt{readtable()} werden die CSV-Dateien in Tabellenform eingelesen. Sollte hierbei ein Fehler auftreten, wird dem Benutzer eine entsprechende Fehlermeldung angezeigt. Wenn das Einlesen der Daten erfolgreich war, kann im nächsten Schritt die Berechnung des Kniegelenkswinkels erfolgen.
+
+%\noindent Für die Berechnung wird zunächst der Betrag der Differenz zwischen aufeinanderfolgenden Werten der absoluten Beschleunigungsrate ermittelt. Diese befinden sich in der Spalte „AbsoluteAcceleration\_m\_s\_2“ und werden für Oberschenkel und Unterschenkel separat bestimmt. Um die Daten der beiden Segmente miteinander zu synchronisieren, wurde bei der Datenerfassung ein starker Ruck des Beines durchgeführt. Dieser Synchronisationspunkt kann in beiden CSV-Dateien ermittelt werden, indem der höchste Wert mithilfe der Funktion \texttt{max()} bestimmt wird.
+
+%\noindent Der Synchronisationszeitpunkt wird sowohl für die Oberschenkel- als auch für die Unterschenkeldaten gespeichert. Da zwischen den beiden Datensätzen eine Zeitverschiebung vorliegt, wird der Synchronisationszeitpunkt von der gesamten Zeit abgezogen und die angepasste Zeit erneut gespeichert. Anschließend wird der gemeinsame Zeitbereich ermittelt, indem die minimalen und maximalen Werte der Zeitachsen bestimmt werden.
+
+%\noindent Nun kann der Winkel für beide Segmente mithilfe der Funktion \texttt{atan2d()} berechnet werden. Dafür werden die Beschleunigungsdaten in Y- und X-Richtung benötigt. Ein gemeinsamer Zeitvektor mit einer Schrittweite von 0,01 Sekunden wird erstellt, anhand dessen die Winkelwerte der beiden Datensätze interpoliert werden. Der Kniewinkel ergibt sich nun aus der Differenz der interpolierten Winkelwerte des Oberschenkels und des Unterschenkels.
+
+%\noindent Um den Synchronisationsausschlag bei der Auswertung der Daten auszuschließen, werden die ersten 2 Sekunden der Messung ignoriert. Abschließend werden die ausgewerteten Daten im erstellten GUI-Element geplottet. Das Diagramm ermöglicht es dem Benutzer, die Ergebnisse visuell zu überprüfen.
+
+%\subsubsection{Callback Funktion: Schieberegler}
+%\noindent Diese Funktion wird ausgelöst, wenn der Benutzer den Schieberegler verstellt. Der ausgewählte Wert wird in der Variablen „val“ gespeichert und in der Funktion \texttt{updatePlot()} verwendet, um den neuen Schwellenwert zu aktualisieren. Die Funktion \texttt{updatePlot()} umfasst mehrere Schritte, die für die Auswertung der Kniebeugen mit Schwellenwert erforderlich sind. Zunächst werden die gespeicherten GUI-Daten abgerufen, um Zugriff auf die relevanten Informationen zu erhalten. Mithilfe einer „if“-Abfrage wird überprüft, ob Kniegelenkswinkel-Daten vorliegen. Falls nicht, wird die Funktion beendet; andernfalls wird sie fortgesetzt.
+
+%\noindent Der aktuelle Wert des Schiebereglers wird ausgelesen und gespeichert. Um die einzelnen Kniebeugen zu identifizieren, werden die Minima der Kniegelenkswinkel analysiert. Hierfür wird die Funktion \texttt{findpeaks()} verwendet, wobei die Parameter „‘MinPeakDistance’“ und „‘MinPeakProminence’“ entsprechend gesetzt werden, um nur signifikante Peaks in ausreichendem Abstand zu berücksichtigen. Die ermittelten Kniegelenkswinkel und deren Zeitpunkte werden in den Variablen „peaks“ und „locs“ gespeichert.
+
+%\noindent Anschließend werden die identifizierten Minima in zwei Gruppen unterteilt: Wenn der Winkel größer oder gleich dem Schwellenwert ist, wird der Peak rot markiert; liegt der Winkel unter dem Schwellenwert, wird die Kniebeuge grün markiert. Der Plotbereich wird entsprechend des ausgewählten Schwellenwerts aktualisiert. Zunächst wird die Achse im GUI ausgewählt und mit „cla;“ der aktuelle Plot gelöscht. Der Verlauf des Kniewinkels wird in Blau dargestellt, eine horizontale, rot gestrichelte Linie entsprechend dem Schwellenwert mit „yline()“ hinzugefügt und die Minima als rote oder grüne Kreise markiert. Abschließend werden die Achsenbeschriftungen und der Titel des Diagramms gesetzt.
+
+%\noindent Um die Ergebnisse im Textfeld darzustellen, wird die Anzahl der erkannten Minima ermittelt, indem die Länge des Minima-Vektors berechnet wird. Die Anzahl der grünen Kreise entspricht den Kniebeugen unterhalb des Schwellenwerts. Die restlichen Minima oberhalb des Schwellenwerts werden durch Subtraktion der unterhalb liegenden von der Gesamtanzahl bestimmt. Diese Werte werden in entsprechenden Variablen gespeichert und abschließend im Textfeld der GUI angezeigt.
+

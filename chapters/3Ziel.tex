@@ -1,0 +1,41 @@
+\section{Ziel der Arbeit}
+\noindent Die korrekte Ausführung einer Kniebeuge ist entscheidend, um Verletzungen zu vermeiden und bestimmte Muskelgruppen gezielt zu trainieren. Zur Analyse des während der Bewegung erreichten Kniegelenkswinkels stehen unterschiedliche Verfahren zur Verfügung.
+\\
+\noindent Konventionelle Methoden wie Videoanalysen (z.\,B. mit \textit{Kinovea}) bieten zwar wertvolle visuelle Informationen, sind jedoch aufwendig, häufig subjektiv in der Auswertung und erfordern entweder manuelle Winkelmessung oder kostenintensive Softwarelösungen wie \textit{Contemplas}.
+\\
+\noindent Die Kombination der \textit{Phyphox}-App mit einer eigens entwickelten grafischen Benutzeroberfläche (GUI) in \textit{MATLAB} ermöglicht eine moderne, praxisnahe und zugängliche Methode zur Erfassung und Analyse des Kniegelenkswinkels. Im Gegensatz zu klassischen Messsystemen wie Goniometern oder komplexen Bewegungslaboren bietet diese Methode eine mobile, kostengünstige und benutzerfreundliche Lösung basierend auf handelsüblichen Smartphones. Die integrierten Sensoren liefern eine ausreichende Genauigkeit für Bewegungsanalysen, insbesondere bei Bewegungsmustern wie der Kniebeuge.
+\\
+\noindent Ein zentrales Ziel dieser Arbeit ist es, durch die Entwicklung einer MATLAB-GUI eine automatisierte und visuell unterstützte Auswertung der Messdaten zu ermöglichen. Die GUI erlaubt es, Winkelverläufe darzustellen und automatisiert anhand der gewählten Kniebeugen-Variante zu bewerten. Damit eignet sich das System sowohl für den sportwissenschaftlichen Einsatz als auch für Privatpersonen, die ihre Ausführung analysieren und verbessern möchten.
+
+\subsection{Vorteile der sensorbasierten Auswertung}
+\noindent Die hier vorgestellte sensorbasierte Methode mit der \textit{Phyphox}-App zeigt einige Vorteile:
+\begin{itemize}
+  \item \textbf{Objektiv:} Die automatische Analyse minimiert subjektive Einflüsse.
+  \item \textbf{Zeitsparend:} Die direkte Auswertung der CSV-Daten macht eine manuelle Nachbearbeitung überflüssig.
+  \item \textbf{Zugänglich:} Sie basiert auf frei verfügbarer Software und handelsüblichen Smartphones.
+  \item \textbf{Flexibl:} Schwellenwerte für die Beurteilung der Kniebeugen sind individuell anpassbar – z.\,B. für Reha- oder Trainingszwecke.
+\end{itemize}
+
+\subsection{Funktionsweise der Auswertung}
+
+\noindent Die Auswertung einer Kniebeuge mittels \textit{Phyphox} erfolgt über zwei GUIs:
+
+\begin{itemize}
+  \item \textbf{GUI 1 – Kalibrierung:} Diese Oberfläche dient der Kalibrierung der Smartphone-Sensoren, um eine zuverlässige Erfassung des tatsächlichen Kniegelenkswinkels zu gewährleisten. 
+  \item \textbf{GUI 2 – Auswertung:} Diese GUI dient der eigentlichen Analyse. Nach Auswahl der gewünschten Kniebeugen-Variante (z.\,B. tief, halb, viertel) wird ein entsprechender Informationstext angezeigt. Gleichzeitig werden automatisch passende Schwellenwerte für die spätere Auswertung gesetzt.
+\end{itemize}
+
+\noindent Im Anschluss lädt die Nutzerin bzw. der Nutzer zwei CSV-Dateien, die mithilfe der \textit{Phyphox}-App erstellt wurden. Die Software analysiert daraufhin, wie viele Kniebeugen innerhalb, oberhalb oder unterhalb der definierten Schwellenwerte lagen. 
+\\
+\noindent Das Ergebnis wird zweifach dargestellt:
+\begin{itemize}
+    \item \textbf{Visuell:} Im Diagramm zeigt eine blaue Linie den zeitlichen Verlauf des Kniegelenkswinkels. Die gesetzten Schwellenwerte werden durch rot-gestichelte Linien dargestellt. Die gemessenen Winkelwerte der Kniebeugen werden farblich markiert: grün (innerhalb), rot (außerhalb).
+    \item \textbf{Textlich:} Ein Auswertungsfeld fasst die Ergebnisse zusammen mit Angabe der Gesamtzahl der Kniebeugen sowie deren Einordnung (innerhalb, oberhalb, unterhalb der Schwellen), dazu wird noch eine Rückmeldung zur Durchschnittlichen Tiefe in Grad angezeigt. 
+\end{itemize}
+
+\subsection{Anwendungsbereich}
+
+\noindent Da zu Beginn der Analyse eine bevorzugte Kniebeugen-Variante gewählt werden kann, eignet sich die Anwendung für verschiedene Zielgruppen und Einsatzszenarien. Durch die Kombination aus objektiver Sensorik und flexibler Software lässt sich das System einfach individualisieren.
+\\
+\noindent
+Im folgenden Kapitel~5 wird ein praktischer Versuch mit mehreren Probanden beschrieben, um die Funktionalität und Aussagekraft der App zu überprüfen. Die Versuchsdurchführung ist dabei so gestaltet, dass sie auch von Privatpersonen eigenständig nachvollzogen werden kann.

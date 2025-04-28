@@ -1,0 +1,180 @@
+\documentclass[
+    paper=a4,
+    ngerman, % neue dt. Rechtschreibung
+    bibliography=totoc,
+    headheight=60pt,
+    captions=tableheading % Tabelleüberschriften und richtiger Abstand
+]{scrartcl}
+
+\usepackage[ngerman]{babel, varioref}
+\usepackage[T1]{fontenc} % font encoding for german
+\usepackage{lmodern} % Schriftart für Schrift Encoding
+\usepackage[utf8]{inputenc} % input encoding
+%====Kopfzeile====
+\usepackage{scrlayer-scrpage}
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+\usepackage{multicol}
+
+%==============================
+%	Mathematikumgebung
+%==============================
+%====sorgt für bold math symbols, wo sie seien sollten bzw nicht seien sollten;	 ===========
+%====keine schöne Lösung, weil siehe Link										 ===========
+%(https://latex.org/forum/viewtopic.php?t=4653#top)
+\makeatletter
+\DeclareRobustCommand*{\bfseries}{
+	\not@math@alphabet\bfseries\mathbf
+	\fontseries\bfdefault\selectfont
+	\boldmath
+}
+\makeatother
+%============================
+\usepackage{amsmath} % Paket für mathematische Umgebungen und Funktionen
+\numberwithin{equation}{section} % sorgt für vorangestelltem Kapitel bei Formelbeschriftung
+\usepackage{amsfonts} % Zusätzliche Mathematische Schriftarten
+\usepackage{amssymb} % Zusätzliche Mathematische Symbole
+\usepackage{amstext} % Textsatz in der Matheumgebung
+\usepackage{upgreek} % Aufrechte griechische Buchstaben
+%====Einheiten=======================
+\usepackage[locale=DE, separate-uncertainty=true]{siunitx}
+\sisetup{per-mode=fraction, fraction-function=\tfrac}
+\usepackage{nicefrac}
+
+%==============================
+%	Grafik
+%==============================
+\usepackage{graphics, graphicx, wrapfig, calc, import} % Einbindung von Grafiken/Bildern auch Textumflossen
+\graphicspath{{plots/}}
+\usepackage{svg}
+\usepackage{float}
+\usepackage{pdfpages}
+% \counterwithin{figure}{section} % per-section figure numbering
+\usepackage{subfigure}
+\usepackage[section]{placeins} % sorgt dafür das Abbildungen in ihrem Kapitel bleiben
+\usepackage[font=small,labelfont=bf]{caption}	% kleine Schrift für Bildunterschriften, Fettgedruckte Bildunterschriften
+\DeclareGraphicsRule{*}{mps}{*}{}
+\unitlength=1mm
+\usepackage{tikz} % Vektorgrafiken in LaTeX
+
+\usepackage[most]{tcolorbox} % used for comments/colorboxes
+
+%==============================
+%	Tabellen
+%==============================
+\usepackage{tabularx} % verbesserte Tabellenkommandos -> Doku
+\usepackage{booktabs} % schoene Tabellen
+\usepackage{tabulary} % Umbrüche in Tabellen
+\usepackage{threeparttable} % Fußnoten in bzw. unter Tabellen
+\usepackage{longtable} % Tabellen über mehrere Seiten
+\usepackage{pdflscape} % Seite drehen für breite Tabellen
+\usepackage{multirow} % Name sagt alles
+\usepackage{matlab-prettifier}
+%==============================
+%	URL
+%==============================
+\usepackage{hyperref} % Verlinkungen innerhalb und außerhalb des PDF-Dokuments
+\usepackage{url} % Formattiert URLs, so dass sie sich z.B. besser vom Text abheben
+\urlstyle{tt}
+
+% ========================================
+%	Angaben für das Titelblatt & Kopf-/Fußzeile
+% ========================================
+% Student:in 1
+\newcommand{\authorav}{Pia}
+\newcommand{\authoran}{Fischer}
+\newcommand{\authoram}{7211873}
+\newcommand{\emaila}{pia.fischer002@stud.fh-dortmund.de}
+
+
+\setlength{\headsep}{10mm}
+\setlength{\footskip}{15mm}
+
+% Kopfzeile
+\ihead{% Kopfzeile links
+    PA2\\
+    SS 25\\
+    \Datum
+    \vspace{1.5em}
+    }
+\chead{% Kopfzeile mitte
+    \Versuch
+    \\[1\baselineskip]
+    %\vspace{1.5em}
+    }
+\ohead{% Kopfzeile rechts
+    \authoran\,\authoram\\
+    \authorbn\,\authorbm\\
+    \authorcn\,\authorcm
+    \medskip \hrule
+    }
+
+% Fußzeile
+\cfoot{Seite \pagemark} % Fußzeile mitte
+
+\date{\Datum}
+\author{
+	\authorav\,\authoran\\\authoram\\
+	\small \href{mailto:\emaila}{\emaila}
+}
+	
+\title{
+	\Huge{\Versuch}\\ \medskip
+ 	\large{
+        \Prof\\ \medskip
+	    Fachhochschule Dortmund \\
+        Fachbereich Informationstechnik
+     }
+}
+
+%==============================
+%	Literaturverzeichnis
+%==============================
+\usepackage[backend=biber,sorting=nyt]{biblatex}
+\usepackage{csquotes}
+\addbibresource{lit.bib} % Quellendatenbank
+
+% ========================================
+%	Titelblatt & Inhaltsverzeichniss
+% ========================================
+
+\newcommand{\Prof}{Prof.in Dr. Ann-Kathrin Hömme}
+\newcommand{\Versuch}{Sensorbasierte Analyse der Kniebeugentiefe}
+% Implementierung einer MATLAB-Anwendung zur Auswertung von Phyphox-Daten
+\newcommand{\Datum}{11.02.2025}
+
+\begin{document}
+\maketitle
+
+\thispagestyle{empty} % Kopf- und Fußzeile bleiben leer
+\newpage
+
+\tableofcontents
+
+
+\newpage
+
+% Einbinde Hinweis-Seite, kann auskommentiert oder gelöscht werden, wenn Sie Ihr Protokoll schreiben
+\input{Hinweise.tex}
+\newpage 
+
+% Einbinden der einzelnen Kapitel
+\input{chapters/1Einleitung}
+\input{chapters/2AktuellerStand}
+\input{chapters/3Ziel}
+\input{chapters/4TechnischerHintergrund}
+\input{chapters/5Methodik}
+\input{chapters/6Limitationen}
+\input{chapters/7Disskusion}
+\input{chapters/8Fazit}
+%\input{chapters/Anhang}
+\newpage
+
+\printbibliography % Einfügen der Bibliothek ins Dokument
+\newpage
+
+\appendix
+%\section{Anhang}
+\input{chapters/Anhang.tex}
+
+\end{document}
